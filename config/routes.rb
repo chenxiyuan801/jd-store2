@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
  root 'products#index'
 
+ resources :sessions
+ resources :users
+ 
    namespace :admin do
      resources :products
      resources :orders do

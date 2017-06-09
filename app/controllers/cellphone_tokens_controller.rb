@@ -11,7 +11,6 @@ class CellphoneTokensController < ApplicationController
         return
       end
 
-
     if session[:token_created_at] and
       session[:token_created_at] + 60 > Time.now.to_i
       render json: {status: 'error', message: "您已经申请过验证码啦，请60s后再试哦！"}

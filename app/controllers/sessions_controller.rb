@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
 
   end
@@ -6,12 +7,12 @@ class SessionsController < ApplicationController
   def create
     if user = login(params[:cellphone], params[:password])
       flash[:notice] = "登陆成功"
-      redirect_back_or_to root_path
+      redirect_to root_path
     else
       flash[:notice] = "手机号或者密码不正确"
       redirect_to new_session_path
     end
-  end
+end
 
   def destroy
     logout
@@ -20,12 +21,4 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
-  def valify_captcha!
-    unless verify_rucaptcha?
-      redirect_to new_session_path, alert: ('验证码不正确或者已过期')
-      return
-    end
-    true
-  end
-  
 end

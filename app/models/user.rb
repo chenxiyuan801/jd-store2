@@ -4,9 +4,9 @@ class User < ApplicationRecord
 
   CELLPHONE_RE = /\A(\+86|86)?1\d{10}\z/
 
-  validates :password, presence: true, message: "密码不能为空",
+  validates_presence_of :password, message: "密码不能为空",
     if: :need_validate_password
-  validates :password_confirmation, presence: true, message: "密码确认不能为空",
+  validates_presence_of :password_confirmation, message: "密码确认不能为空",
     if: :need_validate_password
   validates_confirmation_of :password, message: "密码不一致",
     if: :need_validate_password
@@ -35,7 +35,6 @@ class User < ApplicationRecord
             self.errors.add :cellphone, "手机验证码不正确或者已过期"
             return false
           end
-      else
         return true
       end
    end

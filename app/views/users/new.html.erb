@@ -89,7 +89,7 @@
               alert("手机号码格式错误!");
               return false;
             }
-          
+
             $this.data('old-value', $this.attr('value'));
             $this.attr('value', "发送中...").prop('disabled', true);
           },
@@ -97,7 +97,10 @@
             if (data.status == 'error') {
               alert(data.message);
             $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
-            } else {
+          } else if (data.status == 'gologin') {
+            alert("你的手机号已注册过，请直接登录！");
+            $token_btn.attr('value', '获取短信验证码').prop('disabled', false);
+          }else {
               $this.attr('value', $this.data('old-value'));
               $this.trigger('start_token_timer');
             }

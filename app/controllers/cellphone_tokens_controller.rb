@@ -2,7 +2,7 @@ class CellphoneTokensController < ApplicationController
   prepend_before_action :valify_captcha!, only: [:create]
   #
   # skip_before_action :auth_user, only: [:create]
-  # prepend_before_action :valify_phone_unrepeated!
+  prepend_before_action :valify_phone_unrepeated!
 
   def create
 
